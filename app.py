@@ -21,6 +21,7 @@ def index():
 
 @app.route('/refresh')
 def refresh():
+    Todo.query.delete()
     summariesSet = get_notes_from_calendar()
     for summary in summariesSet:
         todo = Todo(text=summary)
