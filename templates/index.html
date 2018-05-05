@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Todo App</title>
+    <title>Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}">
 </head>
 <body>
-    <h1>Todo List</h1>
+    <h1>Toutes les URL que je colle dans mon Google Calendar...</h1>
+    <ul>
+        {% for todo in todos %}
+        <li><a href="{{ todo.text }}" target="_blank">{{ todo.text }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

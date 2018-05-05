@@ -7,7 +7,14 @@ from oauth2client import file
 # import datetime
 from google_client import renew_credentials, get_events
 
-def get_notes_from_calendar(creds):
+def get_notes_from_calendar():
+
+    # Setup the Calendar API
+    SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
+    store = file.Storage('credentials.json')
+    creds = store.get()
+    if not creds or creds.invalid:
+        creds = renew_credentials()
 
     summaries = get_events(creds, 'https')
     summaries.extend(get_events(creds, 'http'))
@@ -23,11 +30,4 @@ def get_notes_from_calendar(creds):
     print('nombre d\'events uniques ', len(summariesSet))
     return summariesSet
 
-# Setup the Calendar API
-SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
-store = file.Storage('credentials.json')
-creds = store.get()
-if not creds or creds.invalid:
-    creds = renew_credentials()
-
-get_notes_from_calendar(creds)
+get_notes_from_calendar()
