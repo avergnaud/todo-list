@@ -7,6 +7,11 @@
 </head>
 <body>
     <h1>Toutes les URL que je colle dans mon Google Calendar...</h1>
+    <div>
+        <a href="https://github.com/avergnaud/todo-list" target="_blank">sources</a>
+    </div>
+        <a href="refresh">refresh depuis Google Calendar</a>
+    <hr>
     <ul>
         {% for todo in todos %}
         <li><a href="{{ todo.text }}" target="_blank">{{ todo.text }}</a></li>
